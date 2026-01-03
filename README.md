@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Web Performance Exploration — BEFORE Version
 
-## Getting Started
+## 📌 Deskripsi
+Repository ini merupakan bagian dari eksplorasi dan pembelajaran **Web Performance Optimization** menggunakan React.  
+Branch **`before`** merepresentasikan **kondisi awal aplikasi sebelum dilakukan optimasi performa**, dengan tujuan untuk:
 
-First, run the development server:
+- Mengidentifikasi bottleneck performa
+- Mengukur baseline metrics menggunakan Lighthouse
+- Menjadi pembanding yang jelas untuk versi optimasi selanjutnya (`after-v1`, `after-v2`, dst)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧪 Skenario Pengujian
+Aplikasi menampilkan **daftar produk dalam jumlah besar** yang diambil dari public API, lalu dirender langsung ke UI tanpa optimasi khusus.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Karakteristik Implementasi (BEFORE):
+- Menggunakan `useEffect` biasa untuk data fetching
+- Seluruh data produk dirender **sekaligus**
+- Tidak menggunakan pagination atau virtual list
+- Tidak ada memoization
+- Gambar belum dioptimasi
+- Tidak ada cache data
+- Fokus pada **fungsionalitas**, bukan performa
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🌐 Data Source
+API yang digunakan: https://dummyjson.com/products?limit=194
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack
+- **Next.js**
+- TypeScript
+- Public API (DummyJSON)
+- Lighthouse (Chrome DevTools)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📊 Hasil Lighthouse Test (BEFORE)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pengujian dilakukan dengan ketentuan:
+- Mode: **Incognito**
+- Device: **Mobile**
+- Environment: **Development (localhost)**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Screenshot hasil Lighthouse dapat dilihat pada tautan berikut:
+
+🔗 **Lighthouse Report (BEFORE)**  
+<img width="1634" height="795" alt="Image" src="https://github.com/user-attachments/assets/c58b8f52-402e-41e3-ac19-f576da4dd545" />
+
+📌 Catatan:
+- Pengujian dilakukan sebelum optimasi apa pun
+- Data yang dirender berjumlah **194 produk**
+- Skor performance rendah digunakan sebagai **baseline pembanding**
+
+---
+
+## 🔍 Analisis Awal
+Beberapa temuan utama dari hasil pengujian:
+
+- **FCP tergolong cepat**, menunjukkan halaman mulai tampil dengan baik
+- **LCP sangat tinggi**, menandakan konten utama seperti list produk / image terlambat dirender
+- **Total Blocking Time sangat besar**, menunjukkan main thread browser terblokir oleh proses JavaScript dan rendering list besar
+- **CLS = 0**, layout relatif stabil
+
+---
+
+## 📌 Catatan
+Skor Lighthouse pada versi ini **bukan indikasi kualitas akhir aplikasi**, melainkan **baseline pembelajaran** untuk memahami dampak setiap teknik optimasi performa.
