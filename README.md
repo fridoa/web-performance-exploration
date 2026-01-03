@@ -1,7 +1,7 @@
 # Web Performance Exploration — BEFORE Version
 
 ## 📌 Deskripsi
-Repository ini merupakan bagian dari eksplorasi dan pembelajaran **Web Performance Optimization** menggunakan React.  
+Repository ini merupakan bagian dari eksplorasi dan pembelajaran **Web Performance Optimization** menggunakan Next.js.  
 Branch **`before`** merepresentasikan **kondisi awal aplikasi sebelum dilakukan optimasi performa**, dengan tujuan untuk:
 
 - Mengidentifikasi bottleneck performa
@@ -30,7 +30,7 @@ API yang digunakan: https://dummyjson.com/products?limit=194
 ---
 
 ## 🛠️ Tech Stack
-- **Next.js**
+- **Next.js** App Router
 - TypeScript
 - Public API (DummyJSON)
 - Lighthouse (Chrome DevTools)
