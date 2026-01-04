@@ -1,32 +1,13 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Header from "@/components/Header";
-import ProductCard from "@/components/ProductCard";
+import ProductList from "@/components/ProductList";
+import { PAGE_SIZE } from "@/constants";
 import productService from "@/services/product.service";
-import { IProduct } from "@/types/Product";
-import ProductSkeleton from "@/components/ProductSkeleton";
 
-export default function Home() {
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [loading, setLoading] = useState(false);
+export default async function Home() {
+  const initialData = await productService.getProducts(
+    `limit=${PAGE_SIZE}&skip=0`,
+  );
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      console.time("fetchProducts");
-      try {
-        const data = await productService.getProducts();
-        setProducts(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        console.timeEnd("fetchProducts");
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -42,20 +23,10 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {loading
-            ? Array.from({ length: 8 }).map((_, index) => (
-                <div key={index} className="flex justify-center">
-                  <ProductSkeleton />
-                </div>
-              ))
-            : products.map((product) => (
-              
-                <div key={product.id} className="flex justify-center">
-                  <ProductCard product={product} />
-                </div>
-              ))}
-        </div>
+        <ProductList
+          initialProducts={initialData.products}
+          totalProducts={initialData.total}
+        />
       </main>
     </div>
   );
