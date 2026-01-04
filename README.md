@@ -27,6 +27,14 @@ Aplikasi menampilkan **daftar produk dalam jumlah besar** yang diambil dari publ
 - Tidak ada cache data
 - Fokus pada **fungsionalitas**, bukan performa
 
+### Karakteristik Implementasi (AFTER v1):
+
+- Menggunakan **Server Components** untuk initial data fetching
+- Menggunakan **Pagination (Load More)** untuk mengurangi beban render awal
+- Implementasi **React.memo** pada komponen list item
+- Penggunaan **Next.js Image** untuk optimasi gambar
+- Fokus pada **First Load Performance (LCP)** dan pengurangan blocking time
+
 ---
 
 ## 🌐 Data Source
@@ -153,7 +161,7 @@ Dibandingkan versi **BEFORE**, versi **AFTER v1** menunjukkan bahwa:
 
 Versi ini menjadi **fondasi kuat** untuk tahap optimasi berikutnya (`after-v2`), yang akan fokus pada:
 
-- Virtualization / pagination
+- Virtualization (Windowing)
 - Optimasi gambar lanjutan
 - Peningkatan interaction performance (INP)
 - Reducing React commit size
