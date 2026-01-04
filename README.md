@@ -85,7 +85,7 @@ Pengujian dilakukan dengan ketentuan:
 - Environment: **Development (localhost)**
 
 🔗 **Performance Panel Report (BEFORE)**
-<img width="1634" height="795" alt="Image" src="https://github.com/user-attachments/assets/c58b8f52-402e-41e3-ac19-f576da4dd545" />
+<img width="1122" height="912" alt="Image" src="https://github.com/user-attachments/assets/aa1ddc43-3e59-4894-933b-a353316a9ff2" />
 
 ---
 
@@ -118,7 +118,7 @@ Pengujian dilakukan dengan ketentuan:
 - Environment: **Development (localhost)**
 
 🔗 **Performance Panel Report (BEFORE)**
-<img width="1634" height="795" alt="Image" src="https://github.com/user-attachments/assets/c58b8f52-402e-41e3-ac19-f576da4dd545" />
+<img width="1120" height="271" alt="Image" src="https://github.com/user-attachments/assets/98574c61-c37d-4070-a101-cf104df8b65a" />
 
 ---
 
@@ -148,7 +148,7 @@ Pengujian dilakukan dengan ketentuan:
 - Environment: **Development (localhost)**
 
 🔗 **Performance Panel Report (BEFORE)**
-<img width="1634" height="795" alt="Image" src="https://github.com/user-attachments/assets/c58b8f52-402e-41e3-ac19-f576da4dd545" />
+<img width="1117" height="902" alt="Image" src="https://github.com/user-attachments/assets/b4bf3e4e-dfea-40cc-afbc-bc1461e292ee" />
 
 ---
 
@@ -171,9 +171,9 @@ Beberapa temuan utama dari hasil pengujian:
 
 Versi **BEFORE** menunjukan bahwa:
 1. Backend dan initial paint tidak menjadi bottleneck
-2. Rendering list besar secara langsung menyebabkan:
--- Main thread overload
--- LCP yang buruk
+2. Rendering list besar secara langsung menyebabkan:<br>
+-- Main thread overload<br>
+-- LCP yang buruk<br>
 -- Biaya render React yang tinggi
 3. Masalah performa bersifat frontend-rendering–driven, bukan network atau server
 4. Versi ini digunakan sebagai baseline pembanding untuk mengevaluasi dampak optimasi pada fase berikutnya.
