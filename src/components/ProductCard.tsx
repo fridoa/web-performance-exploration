@@ -4,12 +4,14 @@ import Image from "next/image";
 import type { IProduct } from "../types/Product";
 import { Button, Card, CardBody, CardFooter } from "@heroui/react";
 import { Heart } from "lucide-react";
+import React from "react";
 
 interface ProductCardProps {
   product: IProduct;
+  index: number;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, index }: ProductCardProps) => {
   return (
     <Card
       shadow="sm"
@@ -20,17 +22,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Button className="absolute top-4 right-4 z-20 rounded-full bg-white/20 p-2 backdrop-blur-md transition-colors hover:bg-white/40">
             <Heart />
           </Button>
-        </div>
 
-        <div className="relative h-full w-full transition-transform duration-500 ease-in-out hover:scale-110">
-          <Image
-            src={product.thumbnail}
-            alt={product.title}
-            fill
-            className="object-contain drop-shadow-2xl"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={false}
-          />
+          <div className="relative h-full w-full transition-transform duration-500 ease-in-out hover:scale-110">
+            <Image
+              src={product.thumbnail}
+              alt={product.title}
+              fill
+              className="object-contain drop-shadow-2xl"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={index === 0 || index < 4}
+            />
+          </div>
         </div>
       </CardBody>
 
@@ -74,4 +76,4 @@ const ProductCard = ({ product }: ProductCardProps) => {
   );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);
